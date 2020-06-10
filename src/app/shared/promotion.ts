@@ -6,4 +6,4 @@ export class Promotion {
     price: string;
     featured: boolean;
     description: string;
-}
+}  

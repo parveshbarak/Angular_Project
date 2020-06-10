@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
+import { LeaderService } from './leader.service';
 
-import { PromotionService } from './promotion.service';
-
-describe('PromotionService', () => {
+describe('LeaderService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: PromotionService = TestBed.get(PromotionService);
+    const service: LeaderService = TestBed.get(LeaderService);
     expect(service).toBeTruthy();
   });
 });
