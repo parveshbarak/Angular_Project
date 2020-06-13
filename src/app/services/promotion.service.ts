@@ -11,15 +11,24 @@ export class PromotionService {
 
 
   getPromotions(): Promise<Promotion[]> {
-    return Promise.resolve(PROMOTIONS);
+    return new Promise(resolve=> {
+      // Simulate server latency with 2 second delay
+        setTimeout(() => resolve(PROMOTIONS),1500);
+        });
   }
 
   getPromotion(id: string): Promise<Promotion> {
-    return Promise.resolve(PROMOTIONS.filter((promo) => (promo.id === id))[0]);
+    return new Promise(resolve=> {
+      // Simulate server latency with 2 second delay
+        setTimeout(() => resolve(PROMOTIONS.filter((promo) => (promo.id === id))[0]),1500);
+        });
   }
 
   getFeaturedPromotion(): Promise<Promotion> {
-    return Promise.resolve(PROMOTIONS.filter((promotion) => promotion.featured)[0]);
+    return new Promise(resolve=> {
+      // Simulate server latency with 2 second delay
+        setTimeout(() => resolve(PROMOTIONS.filter((promotion) => promotion.featured)[0]),1500);
+        });
   }
   
 }
