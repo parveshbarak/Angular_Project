@@ -5,7 +5,7 @@
     fxLayoutAlign.gt-md="space-around center"
     fxLayoutGap="10px" 
     fxLayoutGap.xs="0">
- 
+  
   <div fxFlex="40" >
       <div fxFlex *ngIf="dish">
     <mat-card>
@@ -31,27 +31,69 @@
   </div>
   
 
-    <div fxFlex="40" *ngIf="dish">
-    <h3>Comments</h3>
-    <mat-list>
-      <mat-list-item *ngFor="let comment of dish.comments">
-        <p mat-line>
-          <span>{{comment.comment}}</span>
-        </p>
-        <p mat-line>
-          <span>{{comment.rating}} Stars</span>
-        </p>
-        <p mat-line>
-          <span>-- {{comment.author}} {{ comment.date | date }}</span>
-        </p>
-      </mat-list-item>
-    </mat-list>
+<div fxFlex="50" *ngIf="dish">
+    <div>
+      <p>
+        <mat-card >
+          <mat-card-header>
+            <mat-card-title>
+              <h3>Comments</h3>
+            </mat-card-title>
+          </mat-card-header>
+       
+
+      <mat-card-content>
+        <mat-list fxFlex>
+          <mat-list-item *ngFor="let comment of dish.comments">
+            <h1 matLine> {{comment.comment}} </h1>
+            <p matLine>
+              <span> {{comment.rating}} stars</span>
+            </p>
+            <p matLine>
+              <span> -- {{comment.author}} {{comment.date | date}}</span>
+            </p>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+ 
+        <mat-card-content>
+        <div *ngIf="feedbackForm.valid">
+        {{message.value}}<br>
+        {{star.value}} stars<br>
+        --{{name.value}} {{ mydate | date}}<br>
+        </div>
+       
+      </mat-card-content>
+      <mat-card-content>
+        <p>
+        <form novalidate [formGroup]="feedbackForm"  #fform="ngForm"  (ngSubmit)="onSubmit(uname,ustar,message)">
+          <p>
+            <mat-form-field class="full-width">
+              <input matInput formControlName="name" placeholder="Name" type="text" #uname>
+              <mat-error *ngIf="formErrors.name">{{formErrors.name}}</mat-error>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-slider formControlName="star" min="1" max="5" thumbLabel tickInterval="1" #ustar></mat-slider>
+          </p>
+          <p>
+             <mat-form-field class="full-width">
+               <textarea matInput formControlName="message" placeholder="Your Comments" rows=12 #message></textarea>
+               <mat-error *ngIf="formErrors.message">{{formErrors.message}}</mat-error>
+              </mat-form-field>
+           </p>  
+           <button type="submit" mat-button class="background-primary text-floral-white"
+           [disabled]="feedbackForm.invalid">Submit</button>
+        </form>
+      </mat-card-content>
+
+
+
+    </mat-card>
+    </p>
     </div>
-
-  <div [hidden]="dish">
-    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
-  </div>
-
+  </div> 
+  
 
 </div>
 
