@@ -35,7 +35,9 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatSliderModule } from '@angular/material/slider'
+import { MatSliderModule } from '@angular/material/slider';
+import { HttpClientModule } from '@angular/common/http';
+import { baseURL } from './shared/baseurl';
 
 
 @NgModule({
@@ -69,12 +71,14 @@ import { MatSliderModule } from '@angular/material/slider'
     FormsModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule,
-    MatSliderModule
+    MatSliderModule,
+    HttpClientModule
   ],
   providers: [
   	DishService,
   	PromotionService,
-    LeaderService
+    LeaderService,
+     {provide: 'BaseURL', useValue: baseURL}
   ], 
 
     entryComponents: [
